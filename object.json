@@ -18,7 +18,23 @@
       "long": 1.0
     },
     "tags": ["pizza", "mexican", "burgers", "sushi"],
-    "dest_list": ["Pizza Hut", "Chipotle", "Jinbeh"],
+    "dest_list": [
+      {
+        "name": "Pizza Hut",
+        "lat": 1.0,
+        "long": 2.0
+      },
+      {
+        "name": "Chipotle",
+        "lat": 1.0,
+        "long": 2.0
+      },
+      {
+        "name": "Jinbeh",
+        "lat": 1.0,
+        "long": 2.0
+      }
+    },
     "final_dest": {
       "name": "Pizza Hut",
       "location": {
