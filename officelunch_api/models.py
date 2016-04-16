@@ -12,7 +12,7 @@ class User(db.Document):
 class Lgroup(db.Document):
     name = db.StringField(max_length=255, required=True)
     lgid = db.IntField(required=True)
-    users = db.ListField(db.StringField(max_length=255), required = True) #TODO this will be a more complex list, currently just holds a list of strings
+    users = db.ListField(db.DictField(), required=True) #TODO this will be a more complex list, currently just holds a list of strings
     origin = db.DictField(required=True) #This will be a python dictionary storing lat/long
     tags = db.ListField(db.StringField(max_length=255), required=True)
     dest_list = db.ListField(db.DictField()) #This is a list of dictionaries holding lat/long and # of votes
