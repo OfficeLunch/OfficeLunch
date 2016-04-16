@@ -48,7 +48,7 @@
     "email": "cbeasley92@gmail.com",
     "phone": "555-555-5555",
     "id": "001",
-    "pwd": "H4x0r",
+    "password": "H4x0r",
     "groups": ["001", "123", "999"]
   }
 }
