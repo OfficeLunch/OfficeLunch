@@ -4,9 +4,11 @@
 # Description:  REST API for Office Lunch
 
 from flask import Flask, jsonify, abort, make_response, request, url_for
-from flask_swagger import swagger
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, resources=r'/api/*', headers='Content-Type')
+# app.config['CORS_HEADERS'] = 'Content-Type'
 
 users = [
     {
@@ -34,6 +36,7 @@ def not_found(error):
 
 
 @app.route('/api/login', methods=['GET'])
+@cross_origin()
 def get_login():
     data = ''
     if 'username' in request.args and 'password' in request.args:
