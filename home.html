@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Administration</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<style type="text/css">
+			#map {
+				height: 500px;
+				width: 100%;
+				background-color: #CCC;
+			}
+		</style>
+	</head>
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+							<h1 id="title">Jane Doe</h1>
+							<p>Hyperspace Engineer</p>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<!--
+
+								Prologue's nav expects links in one of two formats:
+
+								1. Hash link (scrolls to a different section within the page)
+
+								   <li><a href="#foobar" id="foobar-link" class="icon fa-whatever-icon-you-want skel-layers-ignoreHref"><span class="label">Foobar</span></a></li>
+
+								2. Standard link (sends the user to another page/site)
+
+								   <li><a href="http://foobar.tld" id="foobar-link" class="icon fa-whatever-icon-you-want"><span class="label">Foobar</span></a></li>
+
+							-->
+							<ul>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Intro</span></a></li>
+								<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Portfolio</span></a></li>
+								<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">About Me</span></a></li>
+								<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+					<section id="top" class="one dark cover">
+						<div class="container">
+							<header>
+								<h2 class="alt"><strong>OfficeLunch</strong></h2>
+								<p>A voting and recommendation platform for office lunches and happy hours</p>
+							</header>
+							<!--<footer>
+								<a href="#portfolio" class="button scrolly">Start Here</a>
+							</footer>-->
+						</div>
+					</section>
+
+				<!-- Portfolio -->
+					<section id="portfolio" class="two">
+						<div class="container">
+							<header>
+								<h2>Create a lunch group</h2>
+							</header>
+							<div class="row">
+								<div>
+									<div class="row">
+										<div class="12u$(mobile)"><input id="groupName" type="text" name="name" placeholder="Name" /></div>
+									</div>
+									<div class="row">
+										<div class="12u$(mobile)"><input id="autocomplete" placeholder="Enter your address" onfocus="geolocate()" type="text"></input></div>
+									</div>
+									<div class="row">
+										<div class="12u$(mobile)"><input id="commuteDistance" type="text" name="name" placeholder="Commute Distance(mins)" /></div>
+									</div>
+									<div class="row">
+										<input onclick="createGroup()" type="submit" value="Create Group"></input>
+									</div>
+								</div>
+								<div id="map"></div>
+							</div>
+						</div>
+					</section>
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollzer.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC785vGEyaIRFav2qKc-WwL1F_ORwVzD8Q&libraries=places&callback=initAutocomplete"></script>
+			<!--<script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>-->
+			<script type="text/javascript">
+				var placeSearch, autocomplete;
+				var url;
+				var geolocation;
+				var map;
+				var selectedPlace = {"lat": 32, "lng": -97};
+				
+				function createGroup(){
+					alert("Waiting for group creation");
+					var destLng = selectedPlace.lng;
+					var destLat = selectedPlace.lat;
+					var commuteDistance = commuteDistance.val();
+					var groupName = groupName.val();
+					/*$.ajax({
+						type: 'POST',
+						url: url,
+						data: {"origin":{startlocation, commuteDistance},"name": ""},
+						success: function(result){
+
+						}
+					});*/
+				}
+
+				/*function initMap(){
+					var mapDiv = document.getElementById('map');
+    				var map = new google.maps.Map(mapDiv,{
+          				center: {lat: 32.924008, lng: -97.001435},
+          				zoom: 8
+        			});
+				}*/
+
+				function initAutocomplete() {
+				  var mapDiv = document.getElementById('map');
+    			  map = new google.maps.Map(mapDiv,{
+          				center: {lat: 32.924008, lng: -97.001435},
+          				zoom: 17
+        		  });
+				  autocomplete = new google.maps.places.Autocomplete(
+				      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+				      {types: ['geocode']});
+				  autocomplete.addListener('place_changed', mapInit);
+				}
+
+				function mapInit() {
+				  var place = autocomplete.getPlace();
+				  console.log(place);	
+	              map.setCenter({lat: place.geometry.location.lat(), lng: place.geometry.location.lng()});
+				}
+
+				function geolocate() {
+			        if (navigator.geolocation) {
+			          navigator.geolocation.getCurrentPosition(function(position) {
+			            var geolocation = {
+			              lat: position.coords.latitude,
+			              lng: position.coords.longitude
+			            };
+			            var circle = new google.maps.Circle({
+			              center: geolocation,
+			              radius: position.coords.accuracy
+			            });
+			            autocomplete.setBounds(circle.getBounds());
+			          });
+			        }
+			    }
+			</script>
+	</body>
+</html>
