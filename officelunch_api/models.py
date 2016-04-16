@@ -1,5 +1,5 @@
 import datetime
-from officelunch_backend import db
+from officelunch_api import db
 
 class User(db.Document):
     name = db.StringField(max_length=255, required=True)
