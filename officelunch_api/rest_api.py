@@ -50,5 +50,82 @@ def get_login():
     resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
     return resp
 
+
+# Lunch Group information
+def get_lunch_groups():
+    # TODO: Get a list of all groups
+    pass
+
+
+def get_lunch_group_by_name(name):
+    # TODO: Get a group by name
+    pass
+
+
+def get_lunch_group(gid):
+    # TODO: Get a group by ID
+    pass
+
+
+def get_group_name(gid):
+    # TODO: Get a group name by ID
+    pass
+
+
+def get_group_users(gid):
+    # TODO: Get a group's users by ID
+    pass
+
+
+def get_group_origin(gid):
+    # TODO: Get a group's origin by ID
+    pass
+
+
+def get_group_tags(gid):
+    # TODO: Get a group's tags by ID
+    pass
+
+
+def group_dest_list(gid):
+    # TODO: Get a group's destination list by ID
+    pass
+
+
+def group_final_dest(gid):
+    # TODO: Get a group's final destination by ID
+    pass
+
+
+# User Information
+def get_users():
+    # TODO: Get a list of all users
+    pass
+
+
+def get_user_by_email(email):
+    # TODO: Get a user ID by email
+    pass
+
+
+def get_user_name(uid):
+    # TODO: Get a user's name by ID
+    pass
+
+def get_user_email(uid):
+    # TODO: Get a user's email by ID
+    pass
+
+
+def get_user_phone(uid):
+    # TODO: Get a user's phone number by ID
+    pass
+
+
+def get_user_groups(uid):
+    # TODO: Get a user's groups by ID
+    pass
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
