@@ -45,6 +45,7 @@ def get_login():
     resp = make_response(data)
     resp.mimetype = "application/json"
     resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
     return resp
 
 if __name__ == '__main__':
