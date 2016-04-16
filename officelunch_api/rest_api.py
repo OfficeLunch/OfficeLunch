@@ -36,7 +36,6 @@ def not_found(error):
 
 
 @app.route('/api/login', methods=['GET'])
-@cross_origin()
 def get_login():
     data = ''
     if 'username' in request.args and 'password' in request.args:
