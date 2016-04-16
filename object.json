@@ -1,0 +1,38 @@
+{
+  "lunch_group": {
+    "name": "Group #1",
+    "id": "001",
+    "users": {
+      "user": {
+        "id": "001",
+        "tags": [
+          "pizza",
+          "sushi",
+          "burgers"
+        ],
+        "restaurant_vote": "Pizza Hut"
+      }
+    },
+    "origin": {
+      "lat": 0.0,
+      "long": 1.0
+    },
+    "tags": ["pizza", "mexican", "burgers", "sushi"],
+    "dest_list": ["Pizza Hut", "Chipotle", "Jinbeh"],
+    "final_dest": {
+      "name": "Pizza Hut",
+      "location": {
+        "lat": 1.0,
+        "long": 2.0
+      }
+    }
+  },
+  "user": {
+    "name": "Clinton Beasley",
+    "email": "cbeasley92@gmail.com",
+    "phone": "555-555-5555",
+    "id": "001",
+    "pwd": "H4x0r",
+    "groups": ["001", "123", "999"]
+  }
+}
