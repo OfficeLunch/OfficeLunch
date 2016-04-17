@@ -131,18 +131,18 @@ def post_lunch_group():
     # Create a new lunch group
     if not request.json or'email' not in request.json:
         abort(400)
-    group = {
-        "name": request.json['name'] if request.json['name'] != -1 else "",
-        "lgid": str(int(Lgroup.objects[-1].lgid) + 1),
-        "users": request.json['users'] if request.json['users'] != -1 else [],
-        "origin": request.json['origin'] if request.json['origin'] != -1 else {},
-        "tags": request.json['tags'] if request.json['tags'] != -1 else [],
-        "dest_list": request.json['dest_list'] if request.json['dest_list'] != -1 else [],
-        "final_dest": request.json['final_dest'] if request.json['final_dest'] != -1else [],
-        "admin": request.json['admin'] if request.json['admin'] != -1 else "",
-        "start_time": request.json['start_time'] if request.json['start_time'] != -1 else "",
-        "end_time:": request.json['end_time'] if request.json['end_time'] != -1 else ""
-    }
+    group = Lgroup(
+        name=request.json['name'] if 'name' in request.json else "",
+        lgid=str(int(Lgroup.objects.all()[len(Lgroup.objects.all()) - 1].lgid) + 1),
+        users=request.json['users'] if 'users' in request.json else [],
+        origin=request.json['origin'] if 'origin' in request.json else {},
+        tags=request.json['tags'] if 'tags' in request.json else [],
+        dest_list=request.json['dest_list'] if 'dest_list' in request.json else [],
+        final_dest=request.json['final_dest'] if 'final_dest' in request.json else [],
+        admin=request.json['admin'] if 'admin' in request.json else "",
+        start_time=request.json['start_time'] if 'start_time' in request.json else "",
+        end_time=request.json['end_time'] if 'end_time' in request.json else ""
+    )
 
     post = Lgroup(group)
     post.save()
@@ -364,15 +364,13 @@ def post_user():
     if not request.json or'email' not in request.json:
         abort(400)
     user = User(
-        name= request.json['name'] if 'name' in request.json else "",
-        email= request.json['email'] if 'email' in request.json else "",
-        password= request.json['password'] if 'password' in request.json else "",
-        phone= request.json['phone'] if 'phone' in request.json else "",
-        userid= str(int(User.objects.all()[len(User.objects.all()) - 1].userid) + 1),
-        member_of= request.json['member_of'] if 'member_of' in request.json else []
+        name=request.json['name'] if 'name' in request.json else "",
+        email=request.json['email'] if 'email' in request.json else "",
+        password=request.json['password'] if 'password' in request.json else "",
+        phone=request.json['phone'] if 'phone' in request.json else "",
+        userid=str(int(User.objects.all()[len(User.objects.all()) - 1].userid) + 1),
+        member_of=request.json['member_of'] if 'member_of' in request.json else []
     )
-
-    print user
 
     user.save()
     return jsonify({'user': user}), 201
