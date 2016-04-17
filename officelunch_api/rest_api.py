@@ -126,6 +126,39 @@ def get_lunch_group(gid):
     return resp
 
 
+@app.route('/api/group/<string:gid>', methods=['PUT'])
+def put_lunch_group(gid):
+    # Create a new lunch group
+    if not request.json or 'name' not in request.json:
+        abort(400)
+
+    group = Lgroup.objects(lgid=gid)
+
+    if 'name' in request.json:
+        group.update_one(name=request.json['name'])
+    if 'users' in request.json:
+        group.update_one(users=request.json['users'])
+    if 'origin' in request.json:
+        group.update_one(origin=request.json['origin'])
+    if 'tags' in request.json:
+        group.update_one(tags=request.json['tags'])
+    if 'dest_list' in request.json:
+        group.update_one(dest_list=request.json['dest_list'])
+    if 'final_dest' in request.json:
+        group.update_one(final_dest=request.json['final_dest'])
+    if 'admin' in request.json:
+        group.update_one(admin=request.json['admin'])
+    if 'start_time' in request.json:
+        group.update_one(start_time=request.json['start_time'])
+    if 'end_time' in request.json:
+        group.update_one(end_time=request.json['end_time'])
+
+    print group
+
+    group.save()
+    return jsonify({'group': group}), 201
+
+
 @app.route('/api/group', methods=['POST'])
 def post_lunch_group():
     # Create a new lunch group
@@ -357,6 +390,29 @@ def get_user(uid):
     resp.headers['Access-Control-Allow-Origin'] = '*'
     resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
     return resp
+
+
+@app.route('/api/user/<string:uid>', methods=['PUT'])
+def put_user(uid):
+    # Create a new lunch group
+    if not request.json or'email' not in request.json:
+        abort(400)
+
+    user = User.objects(userid=uid)
+
+    if 'name' in request.json:
+        user.update_one(name=request.json['name'])
+    if 'email' in request.json:
+        user.update_one(email=request.json['email'])
+    if 'password' in request.json:
+        user.update_one(password=request.json['password'])
+    if 'phone' in request.json:
+        user.update_one(phone=request.json['phone'])
+    if 'member_of' in request.json:
+        user.update_one(member_of=request.json['member_of'])
+
+    user.save()
+    return jsonify({'user': user}), 201
 
 
 @app.route('/api/user', methods=['POST'])
