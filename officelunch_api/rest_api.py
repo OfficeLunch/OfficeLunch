@@ -129,7 +129,7 @@ def get_lunch_group(gid):
 @app.route('/api/group', methods=['POST'])
 def post_lunch_group():
     # Create a new lunch group
-    if not request.json or'email' not in request.json:
+    if not request.json or 'name' not in request.json:
         abort(400)
     group = Lgroup(
         name=request.json['name'] if 'name' in request.json else "",
