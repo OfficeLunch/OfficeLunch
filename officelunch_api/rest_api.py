@@ -130,9 +130,12 @@ def group_final_dest(gid):
 @app.route('/api/users', methods=['GET'])
 def get_users():
     # TODO: Get a list of all users
+    user_lst = []
     for user in User.objects:
+        user_lst.append(user)
         print jsonify(user)
-    pass
+
+    return user_lst
 
 
 def get_user_by_email(email):
