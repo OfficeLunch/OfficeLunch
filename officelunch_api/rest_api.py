@@ -134,7 +134,7 @@ def get_group_name(gid):
     if not group:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"name": group.name})
+        data = jsonify({"name": group[0].name})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -151,7 +151,7 @@ def get_group_users(gid):
     if not group:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"users": group.users})
+        data = jsonify({"users": group[0].users})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -168,7 +168,7 @@ def get_group_origin(gid):
     if not group:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"origin": group.origin})
+        data = jsonify({"origin": group[0].origin})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -185,7 +185,7 @@ def get_group_tags(gid):
     if not group:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"tags": group.tags})
+        data = jsonify({"tags": group[0].tags})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -202,7 +202,7 @@ def get_group_dest_list(gid):
     if not group:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"dest_list": group.dest_list})
+        data = jsonify({"dest_list": group[0].dest_list})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -219,7 +219,7 @@ def get_group_final_dest(gid):
     if not group:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"final_dest": group.final_dest})
+        data = jsonify({"final_dest": group[0].final_dest})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -236,7 +236,7 @@ def get_group_admin(gid):
     if not group:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"admin": group.admin})
+        data = jsonify({"admin": group[0].admin})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -253,7 +253,7 @@ def get_group_start_time(gid):
     if not group:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"start_time": group.start_time})
+        data = jsonify({"start_time": group[0].start_time})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -270,7 +270,7 @@ def get_group_end_time(gid):
     if not group:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"end_time": group.end_time})
+        data = jsonify({"end_time": group[0].end_time})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -343,7 +343,7 @@ def get_user_name(uid):
     if not user:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"username": user.email})
+        data = jsonify({"username": user[0].name})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -360,7 +360,7 @@ def get_user_email(uid):
     if not user:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"email": user.email})
+        data = jsonify({"email": user[0].email})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -377,7 +377,7 @@ def get_user_phone(uid):
     if not user:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"phone": user.phone})
+        data = jsonify({"phone": user[0].phone})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -394,7 +394,7 @@ def get_user_groups(uid):
     if not user:
         data = jsonify({"exists": "no"})
     else:
-        data = jsonify({"groups": user.member_of})
+        data = jsonify({"groups": user[0].member_of})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
