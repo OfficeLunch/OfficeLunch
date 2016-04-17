@@ -5,10 +5,18 @@
 
 from flask import Flask, jsonify, abort, make_response, request, url_for
 from flask_cors import CORS
+from flask_mongoengine import MongoEngine
+
 
 app = Flask(__name__)
 CORS(app, resources=r'/api/*', headers='Content-Type')
 # app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['MONGODB_SETTINGS'] = {'db': 'officelunch'}
+
+db = MongoEngine(app)
+
+from models import User
+from models import Lgroup
 
 users = [
     {
@@ -98,8 +106,11 @@ def group_final_dest(gid):
 
 
 # User Information
+@app.route('/api/users', methods=['GET'])
 def get_users():
     # TODO: Get a list of all users
+    for user in User.objects:
+        print jsonify(user)
     pass
 
 
