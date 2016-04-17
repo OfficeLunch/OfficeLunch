@@ -130,8 +130,13 @@ def group_final_dest(gid):
 @app.route('/api/users', methods=['GET'])
 def get_users():
     # TODO: Get a list of all users
+    if not User.objects:
+        print 'Database empty'
+        return {}
+
     user_lst = []
     for user in User.objects:
+        print user
         user_lst.append(user)
 
     data = jsonify({'users': user_lst})
