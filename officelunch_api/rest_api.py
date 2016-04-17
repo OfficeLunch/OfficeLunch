@@ -39,7 +39,7 @@ class Lgroup(db.Document):
     end_time = db.DateTimeField()  # end date of the event
 
 
-def get_user(usr_email, pwd):
+def auth_user(usr_email, pwd):
 
     user = User.objects(email=usr_email, password=pwd)
 
@@ -61,7 +61,7 @@ def get_login():
         username = request.args['username']
         password = request.args['password']
 
-        user = get_user(username, password)
+        user = auth_user(username, password)
         data = jsonify({'user': user})
 
     resp = make_response(data)
@@ -319,7 +319,7 @@ def get_user_by_email(usr_email):
 
 
 @app.route('/api/user/<string:uid>', methods=['GET'])
-def get_user_by_email(uid):
+def get_user(uid):
     # Get a user by uid
     if not User.objects:
         # Database empty
