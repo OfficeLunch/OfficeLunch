@@ -21,42 +21,22 @@ class User(db.Document):
     name = db.StringField(max_length=255, required=True)
     email = db.EmailField(required=True)
     password = db.StringField(max_length=255, required=True)
-    phone = db.StringField() #Does this need to be required? This will need to be checked somewhere else in the application since there is no mongo field for phone numbers
+    phone = db.StringField()  # Does this need to be required? This will need to be checked somewhere else in the application since there is no mongo field for phone numbers
     userid = db.StringField(max_length=255, required=True)
-    member_of = db.ListField(db.StringField()) #list of lgids that the user belongs to
+    member_of = db.ListField(db.StringField())  # list of lgids that the user belongs to
 
 
 class Lgroup(db.Document):
     name = db.StringField(max_length=255, required=True)
     lgid = db.StringField(required=True)
     users = db.ListField(db.DictField(), required=True)
-    origin = db.DictField(required=True) #This will be a python dictionary storing lat/long
+    origin = db.DictField(required=True)  # This will be a python dictionary storing lat/long
     tags = db.ListField(db.StringField(max_length=255), required=True)
-    dest_list = db.ListField(db.DictField()) #This is a list of dictionaries holding lat/long and # of votes
-    final_dest = db.DictField() #dictionary with lat/long of voting winner
-    admin = db.StringField(max_length=255, required=True) #id of the group admin
+    dest_list = db.ListField(db.DictField())  # This is a list of dictionaries holding lat/long and # of votes
+    final_dest = db.DictField()  # dictionary with lat/long of voting winner
+    admin = db.StringField(max_length=255, required=True) # id of the group admin
     start_time = db.DateTimeField(default=datetime.datetime.now, required=True)
-    end_time = db.DateTimeField()#end date of the event
-
-
-users = [
-    {
-        'id': 1,
-        'name': 'Clinton Beasley',
-        'username': 'clinton',
-        'password': 'office_lunch'
-    }
-]
-
-
-def get_user_id(username, password):
-    user_id = '-1'
-    for obj in users:
-        if username == obj['username'] and password == obj['password']:
-            user_id = obj['id']
-
-    # print 'User ID: %s' % user_id
-    return user_id
+    end_time = db.DateTimeField()  # end date of the event
 
 
 def get_user(usr_email, pwd):
@@ -112,6 +92,7 @@ def get_lunch_groups():
     return resp
 
 
+@app.route('/api/group_by_name/<string:name>', methods=['GET'])
 def get_lunch_group_by_name(name):
     # Get a group by name
     group = Lgroup.objects(name=name)
@@ -128,6 +109,7 @@ def get_lunch_group_by_name(name):
     return resp
 
 
+@app.route('/api/group/<string:gid>', methods=['GET'])
 def get_lunch_group(gid):
     # Get a group by ID
     group = Lgroup.objects(lgid=gid)
@@ -144,6 +126,7 @@ def get_lunch_group(gid):
     return resp
 
 
+@app.route('/api/group/<string:gid>/name', methods=['GET'])
 def get_group_name(gid):
     # Get a group name by ID
     group = Lgroup.objects(lgid=gid)
@@ -160,6 +143,7 @@ def get_group_name(gid):
     return resp
 
 
+@app.route('/api/group/<string:gid>/users', methods=['GET'])
 def get_group_users(gid):
     # Get a group's users by ID
     group = Lgroup.objects(lgid=gid)
@@ -176,6 +160,7 @@ def get_group_users(gid):
     return resp
 
 
+@app.route('/api/group/<string:gid>/origin', methods=['GET'])
 def get_group_origin(gid):
     # Get a group's origin by ID
     group = Lgroup.objects(lgid=gid)
@@ -192,6 +177,7 @@ def get_group_origin(gid):
     return resp
 
 
+@app.route('/api/group/<string:gid>/tags', methods=['GET'])
 def get_group_tags(gid):
     # Get a group's tags by ID
     group = Lgroup.objects(lgid=gid)
@@ -208,7 +194,8 @@ def get_group_tags(gid):
     return resp
 
 
-def group_dest_list(gid):
+@app.route('/api/group/<string:gid>/dest_list', methods=['GET'])
+def get_group_dest_list(gid):
     # Get a group's destination list by ID
     group = Lgroup.objects(lgid=gid)
 
@@ -224,7 +211,8 @@ def group_dest_list(gid):
     return resp
 
 
-def group_final_dest(gid):
+@app.route('/api/group/<string:gid>/final_dest', methods=['GET'])
+def get_group_final_dest(gid):
     # Get a group's final destination by ID
     group = Lgroup.objects(lgid=gid)
 
@@ -232,6 +220,57 @@ def group_final_dest(gid):
         data = jsonify({"exists": "no"})
     else:
         data = jsonify({"final_dest": group.final_dest})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
+
+
+@app.route('/api/group/<string:gid>/admin', methods=['GET'])
+def get_group_admin(gid):
+    # Get a group's admin
+    group = Lgroup.objects(lgid=gid)
+
+    if not group:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"admin": group.admin})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
+
+
+@app.route('/api/group/<string:gid>/start_time', methods=['GET'])
+def get_group_start_time(gid):
+    # Get a group's start time
+    group = Lgroup.objects(lgid=gid)
+
+    if not group:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"start_time": group.start_time})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
+
+
+@app.route('/api/group/<string:gid>/end_time', methods=['GET'])
+def get_group_end_time(gid):
+    # Get a group's end_time
+    group = Lgroup.objects(lgid=gid)
+
+    if not group:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"end_time": group.end_time})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -262,7 +301,7 @@ def get_users():
     return resp
 
 
-@app.route('/api/users/<string:email>', methods=['GET'])
+@app.route('/api/user_by_email/<string:usr_email>', methods=['GET'])
 def get_user_by_email(usr_email):
     # Get a user ID by email
     if not User.objects:
@@ -279,6 +318,24 @@ def get_user_by_email(usr_email):
     return resp
 
 
+@app.route('/api/user/<string:uid>', methods=['GET'])
+def get_user_by_email(uid):
+    # Get a user by uid
+    if not User.objects:
+        # Database empty
+        return {}
+
+    user = User.objects(userid=uid)
+    data = jsonify({'user': user})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
+
+
+@app.route('/api/user/<string:uid>/name', methods=['GET'])
 def get_user_name(uid):
     # Get a user's name by ID
     user = User.objects(userid=uid)
@@ -295,6 +352,7 @@ def get_user_name(uid):
     return resp
 
 
+@app.route('/api/user/<string:uid>/email', methods=['GET'])
 def get_user_email(uid):
     # Get a user's email by ID
     user = User.objects(userid=uid)
@@ -311,6 +369,7 @@ def get_user_email(uid):
     return resp
 
 
+@app.route('/api/user/<string:uid>/phone', methods=['GET'])
 def get_user_phone(uid):
     # Get a user's phone number by ID
     user = User.objects(userid=uid)
@@ -327,6 +386,7 @@ def get_user_phone(uid):
     return resp
 
 
+@app.route('/api/user/<string:uid>/groups', methods=['GET'])
 def get_user_groups(uid):
     # Get a user's groups by ID
     user = User.objects(userid=uid)
