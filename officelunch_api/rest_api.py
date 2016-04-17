@@ -113,43 +113,131 @@ def get_lunch_groups():
 
 
 def get_lunch_group_by_name(name):
-    # TODO: Get a group by name
-    pass
+    # Get a group by name
+    group = Lgroup.objects(name=name)
+
+    if not group:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"group": group[0]})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def get_lunch_group(gid):
-    # TODO: Get a group by ID
-    pass
+    # Get a group by ID
+    group = Lgroup.objects(lgid=gid)
+
+    if not group:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"group": group[0]})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def get_group_name(gid):
-    # TODO: Get a group name by ID
-    pass
+    # Get a group name by ID
+    group = Lgroup.objects(lgid=gid)
+
+    if not group:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"name": group.name})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def get_group_users(gid):
-    # TODO: Get a group's users by ID
-    pass
+    # Get a group's users by ID
+    group = Lgroup.objects(lgid=gid)
+
+    if not group:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"users": group.users})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def get_group_origin(gid):
-    # TODO: Get a group's origin by ID
-    pass
+    # Get a group's origin by ID
+    group = Lgroup.objects(lgid=gid)
+
+    if not group:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"origin": group.origin})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def get_group_tags(gid):
-    # TODO: Get a group's tags by ID
-    pass
+    # Get a group's tags by ID
+    group = Lgroup.objects(lgid=gid)
+
+    if not group:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"tags": group.tags})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def group_dest_list(gid):
-    # TODO: Get a group's destination list by ID
-    pass
+    # Get a group's destination list by ID
+    group = Lgroup.objects(lgid=gid)
+
+    if not group:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"dest_list": group.dest_list})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def group_final_dest(gid):
-    # TODO: Get a group's final destination by ID
-    pass
+    # Get a group's final destination by ID
+    group = Lgroup.objects(lgid=gid)
+
+    if not group:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"final_dest": group.final_dest})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 # User Information
@@ -192,22 +280,67 @@ def get_user_by_email(usr_email):
 
 
 def get_user_name(uid):
-    # TODO: Get a user's name by ID
-    pass
+    # Get a user's name by ID
+    user = User.objects(userid=uid)
+
+    if not user:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"username": user.email})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
+
 
 def get_user_email(uid):
-    # TODO: Get a user's email by ID
-    pass
+    # Get a user's email by ID
+    user = User.objects(userid=uid)
+
+    if not user:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"email": user.email})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def get_user_phone(uid):
-    # TODO: Get a user's phone number by ID
-    pass
+    # Get a user's phone number by ID
+    user = User.objects(userid=uid)
+
+    if not user:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"phone": user.phone})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def get_user_groups(uid):
-    # TODO: Get a user's groups by ID
-    pass
+    # Get a user's groups by ID
+    user = User.objects(userid=uid)
+
+    if not user:
+        data = jsonify({"exists": "no"})
+    else:
+        data = jsonify({"groups": user.member_of})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 if __name__ == '__main__':
