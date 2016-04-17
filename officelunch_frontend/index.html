@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>OfficeLunch</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/jquery.scrollzer.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
+        <script>
+            function validateLogin(){
+                userName = $("#username").val();
+                pass = $("#password").val();
+		if(userName == "hackdfw" && pass == "hackdfw"){
+               	 window.location = 'http://ec2-52-11-89-254.us-west-2.compute.amazonaws.com/userHome.html';
+                }else{
+			alert("Please use the username= 'hackdfw' and password= 'hackdfw' to demo the application");
+        
+            }  
+}
+        </script>
+	</head>
+    <body>
+        <div id="login">
+
+				<!-- Intro -->
+					<section id="top" class="one dark cover">
+						<div class="container">
+
+							
+				            <h3>Login to Office Lunch</h3>
+                            <br>
+							
+                            
+                            <Form>
+								<div class="row">
+									<div class="6u$ 12u$(mobile)"><input type="text" name="username" id="username" placeholder="Username" /></div>
+                                    <div class="6u$ 12u$(mobile)"><input type="password" name="password" id="password" placeholder="Password" /></div>
+								</div>
+                            </Form>
+                            <br>
+                            <div class="12u$">
+                                <button type="submit" value="Login" onClick="validateLogin()">Login</button>
+				            </div>
+							
+						</div>
+					</section>
+        
+        </div>
+    </body>
+  
+</html>
+        

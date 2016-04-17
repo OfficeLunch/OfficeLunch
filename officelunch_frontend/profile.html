@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>User Profile</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <script src="jquery-2.2.3.min.js"></script>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<style type="text/css">
+			#map {
+				height: 500px;
+				width: 100%;
+				background-color: #CCC;
+			}
+		</style>
+        <script>
+        $( document ).ready(function() {
+            var userObject = localStorage.getItem('currentUser');
+			console.log(userObject);
+			console.log(JSON.parse(userObject));
+			var userCheck = JSON.parse(userObject);
+            $("#currentUser").html(userCheck.user.name);
+            $("#currentUserProfile").html(userCheck.user.name);
+            $("#email").html(userCheck.user.email);
+            $("#phone").html(userCheck.user.phone);
+            $("#userID").html(userCheck.user.id);
+            $("#userGroups").html(userCheck.user.groups.toString());
+            $.each(userCheck.lunch_group, function(key, value){$("#addGroupDropDown").append($("<a id=" + key.toString() + "></a>").val(key.toString()).html(value.name))});
+        })
+        </script>
+	</head>
+    
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+                            <h1><a id="currentUser" href="/profile.html">User</a></h1>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+				
+							<ul>
+								<li><a href="/userHome.html" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Home</span></a></li>
+								<li><a href="/profile.html" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">My Profile</span></a></li>
+								<li><a href="/group.html" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">My Events/Groups</span></a></li>
+								<li><a href="/tags.html" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Current Event</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+						<ul class="icons">
+                            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Portfolio -->
+					<section id="portfolio" class="two">
+						<div class="container">
+							<header>
+								<h2><span id="currentUserProfile"></span>'s Profile</h2>
+							</header>
+                            <table class="default"><th>Key</th><th>Value</th>
+                                <tr><td>User ID:</td><td id="userID"></td></tr>
+                                <tr><td>Email:</td><td id="email"></td></tr>
+                                <tr><td>Phone Number:</td><td id="phone"></td></tr>
+                                <tr><td>Group's:</td>
+                                    <td><div class="dropdown">
+                                    <button class="dropbtn" style="width:100%">Groups:</button>
+                                    <div class="dropdown-content" id="addGroupDropDown" style="width:400%">
+                                        
+                                    </div>
+                                    </div>
+                                    </td>
+                                </tr>
+                            </table>
+                                
+			             </div>
+							<br><br><br><br>
+
+					</section>
+			</div>
+
+		<!-- Footer -->
+			<div id="footer" style="position: fixed; bottom: 0px; width: 85%;">
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; Office Lunch. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP for Styling</a></li>
+					</ul>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollzer.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC785vGEyaIRFav2qKc-WwL1F_ORwVzD8Q&libraries=places&callback=initAutocomplete"></script>
+			<!--<script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>-->
+	</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Administration</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <script src="jquery-2.2.3.min.js"></script>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<style type="text/css">
+			#map {
+				height: 500px;
+				width: 100%;
+				background-color: #CCC;
+			}
+		</style>
+        <script>
+        $( document ).ready(function() {
+var currentUserObject = {
+
+  "lunch_group": [{
+    "name": "Group #1",
+    "id": "001",
+    "users": [{
+      "user": {
+        "id": "001",
+        "tags": [
+          "pizza",
+          "sushi",
+          "burgers"
+        ],
+        "restaurant_vote": "Pizza Hut"
+      },
+        "user": {
+        "id": "002",
+	"name": "hackdfw",
+        "tags": [
+          "chicken",
+          "sushi",
+          "burgers"
+        ],
+        "restaurant_vote": "Pizza Hut"
+      }
+    }],
+    "origin": {
+      "lat": 0.0,
+      "long": 1.0
+    },
+    "tags": ["pizza", "mexican", "burgers", "sushi"],
+    "dest_list": [
+      {
+        "name": "Pizza Hut",
+        "lat": 12.0,
+        "long": -2.0
+      },
+      {
+        "name": "Chipotle",
+        "lat": 1.0,
+        "long": 2.0
+      },
+      {
+        "name": "Jinbeh",
+        "lat": 1.0,
+        "long": 2.0
+      }
+    ],
+    "final_dest": {
+      "name": "Pizza Hut",
+      "location": {
+        "lat": 12.0,
+        "long": -2.0
+      }
+    },
+    "admin": "001",
+    "start_time": "UTC 00:15",
+    "end_time": "UTC 00:45"
+                            },{
+    "name": "Group #6",
+    "id": "006",
+    "users": {
+      "user": {
+        "id": "001",
+        "tags": [
+          "pizza",
+          "sushi",
+          "burgers"
+        ],
+        "restaurant_vote": "Jinbeh"
+      },
+        "user": {
+        "id": "001",
+	"name": "hackdfw",
+        "tags": [
+          "chicken",
+          "sushi",
+          "burgers"
+        ],
+        "restaurant_vote": "Jinbeh"
+      }
+    },
+    "origin": {
+      "lat": 0.0,
+      "long": 1.0
+    },
+    "tags": ["pizza", "mexican", "burgers", "sushi"],
+    "dest_list": [
+      {
+        "name": "Pizza Hut",
+        "lat": 1.0,
+        "long": 2.0
+      },
+      {
+        "name": "Chipotle",
+        "lat": 1.0,
+        "long": 2.0
+      },
+      {
+        "name": "Jinbeh",
+        "lat": 111.0,
+        "long": -222.0
+      }
+    ],
+    "final_dest": {
+      "name": "Jinbeh",
+      "location": {
+        "lat": 111.0,
+        "long": -222.0
+      }
+    },
+    "admin": "001",
+    "start_time": "UTC 00:15",
+    "end_time": "UTC 00:45"
+                            },{
+    "name": "Group #12",
+    "id": "012",
+    "users": [{
+      "user": {
+        "id": "001",
+        "tags": [
+          "pizza",
+          "sushi",
+          "burgers"
+        ],
+        "restaurant_vote": "Chicken"
+      },
+        "user": {
+        "id": "002",
+        "tags": [
+          "chicken",
+          "sushi",
+          "burgers"
+        ],
+        "restaurant_vote": "Chicken"
+      }
+    }],
+    "origin": {
+      "lat": 0.0,
+      "long": 1.0
+    },
+    "tags": ["pizza", "mexican", "burgers", "sushi"],
+    "dest_list": [
+      {
+        "name": "Pizza Hut",
+        "lat": 1.0,
+        "long": 2.0
+      },
+      {
+        "name": "Chipotle",
+        "lat": 1.0,
+        "long": 2.0
+      },
+      {
+        "name": "Jinbeh",
+        "lat": 1.0,
+        "long": 2.0
+      }
+    ],
+    "final_dest": {
+      "name": "Buffalo WildWings",
+      "location": {
+        "lat": -123.0,
+        "long": 22.0
+      }
+    },
+    "admin": "001",
+    "start_time": "UTC 00:15",
+    "end_time": "UTC 00:45"
+                            }],
+  "user": {
+    "name": "Hack DFW",
+    "email": "hackDFW@gmail.com",
+    "phone": "555-555-5555",
+    "id": "001",
+    "password": "H4x0r",
+    "groups": ["Group #2", "Office Life", "HackDFW Crew"]
+  }
+}
+
+            localStorage.setItem('currentUser', JSON.stringify(currentUserObject));
+            var userObject = localStorage.getItem('currentUser');
+			console.log(userObject);
+			console.log(JSON.parse(userObject));
+			var userCheck = JSON.parse(userObject);
+            $("#currentUser").html(userCheck.user.name);
+        })
+        </script>
+	</head>
+    
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+                            <h1><a id="currentUser" href="/profile.html">User</a></h1>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+						
+							<ul>
+								<li><a href="/userHome.html" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Home</span></a></li>
+								<li><a href="/profile.html" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">My Profile</span></a></li>
+								<li><a href="/group.html" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">My Events/Groups</span></a></li>
+								<li><a href="/tags.html" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Current Event</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://github.com/OfficeLunch/OfficeLunch.git" class="icon fa-github"><span class="label">Github</span></a></li>
+							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+					<section id="top" class="one dark">
+						<div class="container">
+							<header>
+								<h2 class="alt"><strong>Office Lunch</strong></h2>
+								<p>A voting and recommendation platform for office lunches and happy hours</p>
+							</header>
+							<!--<footer>
+								<a href="#portfolio" class="button scrolly">Start Here</a>
+							</footer>-->
+						</div>
+					</section>
+
+				<!-- Portfolio -->
+						<section id="portfolio" class="two">
+						<div class="container">
+							<div class="row">
+                                <br>
+                            <div style="width: 60%" id="map"></div>
+								<div style="width: 30">
+                                    <h2>Create a lunch group/event</h2>
+                                    <br>
+									<div class="row">
+										<div class="12u$(mobile)"><input id="groupName" type="text" name="name" placeholder="Enter Group Name" style="width: 200%"/></div>
+									</div>
+									<div class="row">
+										<div class="12u$(mobile)"><input id="autocomplete" placeholder="Enter Work or Starting Location" onfocus="geolocate()" type="text" style="width: 200%"/></div>
+									</div>
+									<div class="row">
+										<div class="12u$(mobile)"><input id="commuteDistance" type="text" name="name" placeholder="Commute Distance(mins)" style="width: 200%"/></div>
+									</div>
+									<div class="row">
+										<input onclick="createGroup()" type="submit" value="Create Group" style="margin: 20%"/>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</section>
+			</div>
+
+		<!-- Footer -->
+			<div id="footer" >
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollzer.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC785vGEyaIRFav2qKc-WwL1F_ORwVzD8Q&libraries=places&callback=initAutocomplete"></script>
+			<!--<script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>-->
+			<script type="text/javascript">
+				var placeSearch, autocomplete;
+				var url;
+				var geolocation;
+				var map;
+				var selectedPlace = {"lat": 32, "lng": -97};
+				
+				function createGroup(){
+					alert("Group will be processed for creation");
+					var destLng = selectedPlace.lng;
+					var destLat = selectedPlace.lat;
+					var commuteDistance = commuteDistance.val();
+					var groupName = groupName.val();
+					/*$.ajax({
+						type: 'POST',
+						url: url,
+						data: {"origin":{startlocation, commuteDistance},"name": ""},
+						success: function(result){
+
+						}
+					});*/
+				}
+
+				/*function initMap(){
+					var mapDiv = document.getElementById('map');
+    				var map = new google.maps.Map(mapDiv,{
+          				center: {lat: 32.924008, lng: -97.001435},
+          				zoom: 8
+        			});
+				}*/
+
+				function initAutocomplete() {
+				  var mapDiv = document.getElementById('map');
+    			  map = new google.maps.Map(mapDiv,{
+          				center: {lat: 32.924008, lng: -97.001435},
+          				zoom: 17
+        		  });
+				  autocomplete = new google.maps.places.Autocomplete(
+				      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+				      {types: ['geocode']});
+				  autocomplete.addListener('place_changed', mapInit);
+				}
+
+				function mapInit() {
+				  var place = autocomplete.getPlace();
+				  console.log(place);	
+	              map.setCenter({lat: place.geometry.location.lat(), lng: place.geometry.location.lng()});
+				}
+
+				function geolocate() {
+			        if (navigator.geolocation) {
+			          navigator.geolocation.getCurrentPosition(function(position) {
+			            var geolocation = {
+			              lat: position.coords.latitude,
+			              lng: position.coords.longitude
+			            };
+			            var circle = new google.maps.Circle({
+			              center: geolocation,
+			              radius: position.coords.accuracy
+			            });
+			            autocomplete.setBounds(circle.getBounds());
+			          });
+			        }
+			    }
+			</script>
+	</body>
+</html>

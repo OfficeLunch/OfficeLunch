@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Voting</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <script src="jquery-2.2.3.min.js"></script>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<script>
+        $( document ).ready(function() {
+            var userObject = localStorage.getItem('currentUser');
+			console.log(userObject);
+			console.log(JSON.parse(userObject));
+			var userCheck = JSON.parse(userObject);
+            $("#currentUser").html(userCheck.user.name);
+            $("#currentUserProfile").html(userCheck.user.name);
+            $("#groupName").html(userCheck.lunch_group.name);
+            $("#groupID").html(userCheck.lunch_group.id);
+            $("#eventLocation").html("lat: " + userCheck.lunch_group.final_dest.location.lat + " , long: " + userCheck.lunch_group.final_dest.location.long);
+            $("#eventName").html(userCheck.lunch_group.final_dest.name);
+            $("#lat_long").html("lat: " + userCheck.lunch_group.origin.lat + " , long: " + userCheck.lunch_group.origin.long);
+            $("#groupMembers").html(userCheck.lunch_group.users.user.id);
+            
+           
+        })
+        
+        function getGroupDetails(){
+            $("#selectedGroup").html("Test");
+        }
+        </script>
+    </head>
+	
+    
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+                            <h1><a id="currentUser" href="/profile.html">User</a></h1>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+
+							<ul>
+								<li><a href="/userHome.html" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Home</span></a></li>
+								<li><a href="/profile.html" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">My Profile</span></a></li>
+								<li><a href="/group.html" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">My Events/Groups</span></a></li>
+								<li><a href="/tags.html" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Current Event</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li
+							<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+					<section id="top" class="one dark">
+						<div class="container">
+							<header>
+								<h2 class="alt"><strong>Office Lunch</strong></h2>
+								<p>A voting and recommendation platform for office lunches and happy hours</p>
+							</header>
+							<!--<footer>
+								<a href="#portfolio" class="button scrolly">Start Here</a>
+							</footer>-->
+						</div>
+					</section>
+
+				<!-- Portfolio -->
+					<section id="portfolio" class="two">
+						<div class="container">
+
+							<header>
+								<h2>User Voting Preferences</h2>
+							</header>
+							<p>Enter in whatever food you like. Ex. pizza, sushi, chicken wings</p>
+
+							<form>
+								<div><input style="width:100%; margin: 20px;" type="text" id="tag1" placeholder="Ramen" /></div>
+								<div><input style="width:100%; margin: 20px;" type="text" id="tag2" placeholder="Indian" /></div>
+								<div><input style="width:100%; margin: 20px;" type="text" id="tag3" placeholder="Thai" /></div>
+                                </form>
+								<div class="row">									
+									<div class="12u$">
+										<button onclick="submitTags()" type="submit" value="Submit Tags">Submit Tags</button>
+									</div>
+								</div>
+							
+
+						</div>
+					</section>
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollzer.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+			<script type="text/javascript" src="categories.json "></script>
+			<script type="text/javascript">
+
+				var id;
+				var url;
+
+				if(typeof(Storage) !== "undefined"){
+					id = localStorage.userid
+				}
+				
+				function submitTags(){
+					console.log("Submitting Tags");
+					var tag1 = $('#tag1').val();
+					var tag2 = $('#tag2').val();
+					var tag3 = $('#tag3').val();
+                    window.location = '/list.html'
+					/*$.ajax({
+						type: 'POST',
+						url: url,
+						data: {"name":"jon"},
+						success: function(result){
+							console.log(result);
+						},
+						error: function(result){
+							console.log(result);
+						}
+					});*/
+				}
+			</script>
+	</body>
+</html>
