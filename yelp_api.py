@@ -13,6 +13,7 @@ with io.open('config.json') as cred:
     auth = Oauth1Authenticator(**creds)
     client = Client(auth)
 
+#takes a dictionary with lat/long and returns a response object (with 20 restaurants)
 def get_search(location):
     params = {
         'term' : 'restaurants',
@@ -23,6 +24,47 @@ def get_search(location):
     }
 
     response = client.search_by_coordinates(location['lat'],location['long'], **params)
-    #for x in response.businesses:
-        #print '%-*s%s%f%f' % (35, x.name, x.categories,x.location.coordinate.latitude,x.location.coordinate.longitude)
     return response
+
+#as above but returns 2 responses with 20 each
+def get_search40(location):
+    params = {
+        'term' : 'restaurants',
+        'lang' : 'en',
+        'limit': 20,
+        'radius_filter' : 8000,
+        'sort' : 2
+    }
+
+    response1 = client.search_by_coordinates(location['lat'],location['long'], **params)
+    params['offset'] = 20
+    response2 = client.search_by_coordinates(location['lat'],location['long'], **params)
+
+    return [response1, response2]
+
+#takes a yelp response and a list of tags and will return a list of 10 restaurants(dictionaries)
+def sortRestaurants(metatags,response):
+	metaList = {}
+	listofBusiness = []
+	weightList = {}
+	for tag in metatags:
+		if not tag in metaList:
+			metaList[tag] = 1
+		else:
+			metaList[tag] += 1
+
+    for x in response.businesses:
+    	print x.categories
+    	for key in metaList:
+    		if(x.categories in key):
+                listofBusiness.append(x)
+
+    for dictionary in listofBusiness:
+        for listCategories in dictionary.categories:
+        	if cat in listCategories:
+                if not dictionary.name in weightList:
+                    weightList[dictionary.name] = 1
+                else:
+                    weightList[dictionary.name] += 1
+
+    return listofBusiness[:10]
