@@ -126,6 +126,29 @@ def get_lunch_group(gid):
     return resp
 
 
+@app.route('api/group', methods=['POST'])
+def post_lunch_group():
+    # Create a new lunch group
+    if not request.json or'email' not in request.json:
+        abort(400)
+    group = {
+        "name": request.json['name'] if request.json['name'] else "",
+        "lgid": str(int(Lgroup.objects[-1].lgid) + 1),
+        "users": request.json['users'] if request.json['users'] else [],
+        "origin": request.json['origin'] if request.json['origin'] else {},
+        "tags": request.json['tags'] if request.json['tags'] else [],
+        "dest_list": request.json['dest_list'] if request.json['dest_list'] else [],
+        "final_dest": request.json['final_dest'] if request.json['final_dest'] else [],
+        "admin": request.json['admin'] if request.json['admin'] else "",
+        "start_time": request.json['start_time'] if request.json['start_time'] else "",
+        "end_time:": request.json['end_time'] if request.json['end_time'] else ""
+    }
+
+    post = Lgroup(group)
+    post.save()
+    return jsonify({'group': group}), 201
+
+
 @app.route('/api/group/<string:gid>/name', methods=['GET'])
 def get_group_name(gid):
     # Get a group name by ID
@@ -333,6 +356,25 @@ def get_user(uid):
     resp.headers['Access-Control-Allow-Origin'] = '*'
     resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
     return resp
+
+
+@app.route('api/user', methods=['POST'])
+def post_user():
+    # Create a new lunch group
+    if not request.json or'email' not in request.json:
+        abort(400)
+    user = {
+        "name": request.json['name'] if request.json['name'] else "",
+        "email": request.json['email'] if request.json['email'] else "",
+        "password": request.json['password'] if request.json['password'] else "",
+        "phone": request.json['phone'] if request.json['phone'] else "",
+        "uid": str(int(User.objects[-1].uid) + 1),
+        "member_of": request.json['member_of'] if request.json['member_of'] else []
+    }
+
+    post = User(user)
+    post.save()
+    return jsonify({'user': user}), 201
 
 
 @app.route('/api/user/<string:uid>/name', methods=['GET'])
