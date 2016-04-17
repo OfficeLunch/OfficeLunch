@@ -1,7 +1,7 @@
 # OfficeLunch
 HackDFW 2016 Project
 
-Office Lunch is a web application that based on input provides options everyone is in the mood for and can enjoy. Leveraging AWS EC2 instances for the web server, application server, and DB server the team is able to serve the application in a stable environment that we configured and manage. 
+Office Lunch is a web application that based on input provides lunch options everyone is in the mood for and can enjoy. Leveraging AWS EC2 instances for the web server, application server, and DB server the team is able to serve the application in a stable environment that we configured and manage. 
 
 The Application: 
 
