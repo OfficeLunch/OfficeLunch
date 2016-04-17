@@ -44,27 +44,40 @@ def get_search40(location):
 
 #takes a yelp response and a list of tags and will return a list of 10 restaurants(dictionaries)
 def sortRestaurants(metatags,response):
-	metaList = {}
-	listofBusiness = []
-	weightList = {}
-	for tag in metatags:
-		if not tag in metaList:
-			metaList[tag] = 1
-		else:
-			metaList[tag] += 1
+    metaList = {}
+    listofBusiness = []
+    weightList = {}
+    for tag in metatags:
+        if not tag in metaList:
+            metaList[tag] = 1
+        else:
+            metaList[tag] += 1
+
+    print metaList
 
     for x in response.businesses:
-    	print x.categories
-    	for key in metaList:
-    		if(x.categories in key):
-                listofBusiness.append(x)
+        #print x.categories
+        for key in metaList:
+            #print key
+            for cats in x.categories:
+                for tag in cats:
+                    if tag in key:
+                        #print key
+                        listofBusiness.append(x)
 
+    #print listofBusiness
     for dictionary in listofBusiness:
+        #print dictionary.name
         for listCategories in dictionary.categories:
-        	if cat in listCategories:
-                if not dictionary.name in weightList:
-                    weightList[dictionary.name] = 1
-                else:
-                    weightList[dictionary.name] += 1
+            if not dictionary.name in weightList:
+                weightList[dictionary.name] = 1
+            else:
+                weightList[dictionary.name] += 1
+
+    maximum = 0
+    for i in listofBusiness:
+        if weightList[i.name] > maximum:
+            maximum = weightList[i.name]
+            listofBusiness.insert(0,listofBusiness.pop(listofBusiness.index(i)))
 
     return listofBusiness[:10]
