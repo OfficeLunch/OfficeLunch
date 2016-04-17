@@ -144,8 +144,9 @@ def post_lunch_group():
         end_time=request.json['end_time'] if 'end_time' in request.json else ""
     )
 
-    post = Lgroup(group)
-    post.save()
+    print group
+
+    group.save()
     return jsonify({'group': group}), 201
 
 
