@@ -133,9 +133,14 @@ def get_users():
     user_lst = []
     for user in User.objects:
         user_lst.append(user)
-        print jsonify(user)
 
-    return user_lst
+    data = jsonify({'users': user_lst})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def get_user_by_email(email):
