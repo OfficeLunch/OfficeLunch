@@ -60,9 +60,10 @@ def get_user_id(username, password):
 
 
 def get_user(usr_email, password):
+
     user = User.objects(email=usr_email)
 
-    return user
+    return user[0]
 
 
 @app.errorhandler(404)
@@ -77,7 +78,8 @@ def get_login():
         username = request.args['username']
         password = request.args['password']
 
-        data = get_user(username, password)
+        user = get_user(username, password)
+        data = jsonify({'user': user})
 
     resp = make_response(data)
     resp.mimetype = "application/json"
