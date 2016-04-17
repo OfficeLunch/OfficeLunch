@@ -134,11 +134,11 @@ def post_lunch_group():
     group = Lgroup(
         name=request.json['name'] if 'name' in request.json else "",
         lgid=str(int(Lgroup.objects.all()[len(Lgroup.objects.all()) - 1].lgid) + 1),
-        users=request.json['users'] if 'users' in request.json else [],
+        users=request.json['users'] if 'users' in request.json else {},
         origin=request.json['origin'] if 'origin' in request.json else {},
         tags=request.json['tags'] if 'tags' in request.json else [],
         dest_list=request.json['dest_list'] if 'dest_list' in request.json else [],
-        final_dest=request.json['final_dest'] if 'final_dest' in request.json else [],
+        final_dest=request.json['final_dest'] if 'final_dest' in request.json else {},
         admin=request.json['admin'] if 'admin' in request.json else "",
         start_time=request.json['start_time'] if 'start_time' in request.json else "",
         end_time=request.json['end_time'] if 'end_time' in request.json else ""
