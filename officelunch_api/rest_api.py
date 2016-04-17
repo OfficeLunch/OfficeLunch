@@ -87,7 +87,7 @@ def get_lunch_groups():
 
     resp = make_response(data)
     resp.mimetype = "application/json"
-    resp.headers['Access-Control-Allow-Origin'] = 'ORIGIN'
+    resp.headers['Access-Control-Allow-Origin'] = '*'
     resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
     return resp
 
