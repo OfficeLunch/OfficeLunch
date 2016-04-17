@@ -364,12 +364,12 @@ def post_user():
     if not request.json or'email' not in request.json:
         abort(400)
     user = {
-        "name": request.json['name'] if request.json['name'] != -1 else "",
-        "email": request.json['email'] if request.json['email'] != -1 else "",
-        "password": request.json['password'] if request.json['password'] != -1 else "",
-        "phone": request.json['phone'] if request.json['phone'] != -1 else "",
+        "name": request.json['name'] if 'name' in request.json else "",
+        "email": request.json['email'] if 'email' in request.json else "",
+        "password": request.json['password'] if 'password' in request.json else "",
+        "phone": request.json['phone'] if 'phone' in request.json else "",
         "uid": str(int(User.objects[-1].uid) + 1),
-        "member_of": request.json['member_of'] if request.json['member_of'] != -1 else []
+        "member_of": request.json['member_of'] if 'member_of' in request.json else []
     }
 
     print user
