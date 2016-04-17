@@ -372,6 +372,8 @@ def post_user():
         "member_of": request.json['member_of'] if request.json['member_of'] != -1 else []
     }
 
+    print user
+
     post = User(user)
     post.save()
     return jsonify({'user': user}), 201
