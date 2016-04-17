@@ -126,7 +126,7 @@ def get_lunch_group(gid):
     return resp
 
 
-@app.route('api/group', methods=['POST'])
+@app.route('/api/group', methods=['POST'])
 def post_lunch_group():
     # Create a new lunch group
     if not request.json or'email' not in request.json:
@@ -358,7 +358,7 @@ def get_user(uid):
     return resp
 
 
-@app.route('api/user', methods=['POST'])
+@app.route('/api/user', methods=['POST'])
 def post_user():
     # Create a new lunch group
     if not request.json or'email' not in request.json:
