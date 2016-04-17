@@ -132,16 +132,16 @@ def post_lunch_group():
     if not request.json or'email' not in request.json:
         abort(400)
     group = {
-        "name": request.json['name'] if request.json['name'] else "",
+        "name": request.json['name'] if request.json['name'] != -1 else "",
         "lgid": str(int(Lgroup.objects[-1].lgid) + 1),
-        "users": request.json['users'] if request.json['users'] else [],
-        "origin": request.json['origin'] if request.json['origin'] else {},
-        "tags": request.json['tags'] if request.json['tags'] else [],
-        "dest_list": request.json['dest_list'] if request.json['dest_list'] else [],
-        "final_dest": request.json['final_dest'] if request.json['final_dest'] else [],
-        "admin": request.json['admin'] if request.json['admin'] else "",
-        "start_time": request.json['start_time'] if request.json['start_time'] else "",
-        "end_time:": request.json['end_time'] if request.json['end_time'] else ""
+        "users": request.json['users'] if request.json['users'] != -1 else [],
+        "origin": request.json['origin'] if request.json['origin'] != -1 else {},
+        "tags": request.json['tags'] if request.json['tags'] != -1 else [],
+        "dest_list": request.json['dest_list'] if request.json['dest_list'] != -1 else [],
+        "final_dest": request.json['final_dest'] if request.json['final_dest'] != -1else [],
+        "admin": request.json['admin'] if request.json['admin'] != -1 else "",
+        "start_time": request.json['start_time'] if request.json['start_time'] != -1 else "",
+        "end_time:": request.json['end_time'] if request.json['end_time'] != -1 else ""
     }
 
     post = Lgroup(group)
@@ -364,12 +364,12 @@ def post_user():
     if not request.json or'email' not in request.json:
         abort(400)
     user = {
-        "name": request.json['name'] if request.json['name'] else "",
-        "email": request.json['email'] if request.json['email'] else "",
-        "password": request.json['password'] if request.json['password'] else "",
-        "phone": request.json['phone'] if request.json['phone'] else "",
+        "name": request.json['name'] if request.json['name'] != -1 else "",
+        "email": request.json['email'] if request.json['email'] != -1 else "",
+        "password": request.json['password'] if request.json['password'] != -1 else "",
+        "phone": request.json['phone'] if request.json['phone'] != -1 else "",
         "uid": str(int(User.objects[-1].uid) + 1),
-        "member_of": request.json['member_of'] if request.json['member_of'] else []
+        "member_of": request.json['member_of'] if request.json['member_of'] != -1 else []
     }
 
     post = User(user)
