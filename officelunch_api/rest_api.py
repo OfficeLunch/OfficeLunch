@@ -59,6 +59,12 @@ def get_user_id(username, password):
     return user_id
 
 
+def get_user(usr_email, password):
+    user = User.objects(email=usr_email)
+
+    return jsonify(user)
+
+
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
@@ -71,7 +77,9 @@ def get_login():
         username = request.args['username']
         password = request.args['password']
 
-        data = jsonify({'user_id': get_user_id(username, password)})
+        data = get_user(username, password)
+
+
 
     resp = make_response(data)
     resp.mimetype = "application/json"
@@ -129,9 +137,9 @@ def group_final_dest(gid):
 # User Information
 @app.route('/api/users', methods=['GET'])
 def get_users():
-    # TODO: Get a list of all users
+    # Get a list of all users
     if not User.objects:
-        print 'Database empty'
+        # Database empty
         return {}
 
     user_lst = []
@@ -148,9 +156,21 @@ def get_users():
     return resp
 
 
-def get_user_by_email(email):
-    # TODO: Get a user ID by email
-    pass
+@app.route('/api/users/<string:email>', methods=['GET'])
+def get_user_by_email(usr_email):
+    # Get a user ID by email
+    if not User.objects:
+        # Database empty
+        return {}
+
+    user = User.objects(email=usr_email)
+    data = jsonify({'user': user})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def get_user_name(uid):
