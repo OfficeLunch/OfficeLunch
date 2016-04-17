@@ -156,7 +156,13 @@ def put_lunch_group(gid):
     print group
 
     group.save()
-    return jsonify({'group': group}), 201
+
+    resp = make_response(jsonify({'group': group}))
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+
+    return resp, 201
 
 
 @app.route('/api/group', methods=['POST'])
@@ -180,7 +186,13 @@ def post_lunch_group():
     print group
 
     group.save()
-    return jsonify({'group': group}), 201
+
+    resp = make_response(jsonify({'group': group}))
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+
+    return resp, 201
 
 
 @app.route('/api/group/<string:gid>/name', methods=['GET'])
@@ -412,7 +424,13 @@ def put_user(uid):
         user.update_one(member_of=request.json['member_of'])
 
     user.save()
-    return jsonify({'user': user}), 201
+
+    resp = make_response(jsonify({'user': user}))
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+
+    return resp, 201
 
 
 @app.route('/api/user', methods=['POST'])
@@ -430,7 +448,13 @@ def post_user():
     )
 
     user.save()
-    return jsonify({'user': user}), 201
+
+    resp = make_response(jsonify({'user': user}))
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+
+    return resp, 201
 
 
 @app.route('/api/user/<string:uid>/name', methods=['GET'])
