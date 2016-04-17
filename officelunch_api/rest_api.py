@@ -363,19 +363,18 @@ def post_user():
     # Create a new lunch group
     if not request.json or'email' not in request.json:
         abort(400)
-    user = {
-        "name": request.json['name'] if 'name' in request.json else "",
-        "email": request.json['email'] if 'email' in request.json else "",
-        "password": request.json['password'] if 'password' in request.json else "",
-        "phone": request.json['phone'] if 'phone' in request.json else "",
-        "uid": str(int(User.objects.all()[len(User.objects.all()) - 1].userid) + 1),
-        "member_of": request.json['member_of'] if 'member_of' in request.json else []
-    }
+    user = User(
+        name= request.json['name'] if 'name' in request.json else "",
+        email= request.json['email'] if 'email' in request.json else "",
+        password= request.json['password'] if 'password' in request.json else "",
+        phone= request.json['phone'] if 'phone' in request.json else "",
+        userid= str(int(User.objects.all()[len(User.objects.all()) - 1].userid) + 1),
+        member_of= request.json['member_of'] if 'member_of' in request.json else []
+    )
 
     print user
 
-    post = User(user)
-    post.save()
+    user.save()
     return jsonify({'user': user}), 201
 
 
