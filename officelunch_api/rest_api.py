@@ -368,7 +368,7 @@ def post_user():
         "email": request.json['email'] if 'email' in request.json else "",
         "password": request.json['password'] if 'password' in request.json else "",
         "phone": request.json['phone'] if 'phone' in request.json else "",
-        "uid": str(int(User.objects[-1].uid) + 1),
+        "uid": str(int(User.objects.all()[-1].userid) + 1),
         "member_of": request.json['member_of'] if 'member_of' in request.json else []
     }
 
