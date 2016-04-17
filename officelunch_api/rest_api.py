@@ -64,7 +64,7 @@ def get_user(usr_email, pwd):
     user = User.objects(email=usr_email, password=pwd)
 
     if not user:
-        return {"error": "User not found"}
+        return {"exists": "no"}
     else:
         return user[0]
 
@@ -92,9 +92,24 @@ def get_login():
 
 
 # Lunch Group information
+@app.route('/api/groups', methods=['GET'])
 def get_lunch_groups():
-    # TODO: Get a list of all groups
-    pass
+    # Get a list of all groups
+    if not Lgroup.objects:
+        # Database empty
+        return {}
+
+    grp_lst = []
+    for grp in Lgroup.objects:
+        grp_lst.append(grp)
+
+    data = jsonify({'group_list': grp_lst})
+
+    resp = make_response(data)
+    resp.mimetype = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST', 'GET', 'OPTIONS'
+    return resp
 
 
 def get_lunch_group_by_name(name):
