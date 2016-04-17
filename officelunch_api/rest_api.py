@@ -61,9 +61,7 @@ def get_user_id(username, password):
 
 def get_user(usr_email, pwd):
 
-    user = User.objects(email=usr_email, password=pwd)
-
-    print type(user[0])
+    user = User.objects.get(email=usr_email, password=pwd)
 
     return user[0]
 
