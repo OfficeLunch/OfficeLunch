@@ -41,7 +41,10 @@
         "lat": 1.0,
         "long": 2.0
       }
-    }
+    },
+    "admin": "001",
+    "start_time": "UTC 00:15",
+    "end_time": "UTC 00:45"
   },
   "user": {
     "name": "Clinton Beasley",
