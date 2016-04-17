@@ -63,6 +63,8 @@ def get_user(usr_email, password):
 
     user = User.objects(email=usr_email)
 
+    print type(user[0])
+
     return user[0]
 
 
