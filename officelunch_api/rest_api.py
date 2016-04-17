@@ -61,9 +61,12 @@ def get_user_id(username, password):
 
 def get_user(usr_email, pwd):
 
-    user = User.objects(email=usr_email, password=pwd).get()
+    user = User.objects(email=usr_email, password=pwd)
 
-    return user[0]
+    if not user:
+        return {"error": "User not found"}
+    else:
+        return user[0]
 
 
 @app.errorhandler(404)
