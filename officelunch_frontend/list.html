@@ -35,6 +35,9 @@
         function getGroupDetails(){
             $("#selectedGroup").html("Test");
         }
+	function vote(){
+	   alert("Thank you for your vote!");
+	}
         </script>
     </head>
 	
@@ -102,18 +105,19 @@
 							
                             <table class="default"><thead>Vote for one of the 10 selected restraunts</thead>
                             <tr><th>Restaurant Option</th><th>Selection</th></tr>
-                            <tr><td>Restaurant 1</td><td><input type="radio" name="radioRestaurant" id="1"/> </td></tr>
-                            <tr><td>Restaurant 2</td><td><input type="radio" name="radioRestaurant" id="2"/></td></tr>
-                            <tr><td>Restaurant 3</td><td><input type="radio" name="radioRestaurant" id="3"/></td></tr>
-                            <tr><td>Restaurant 4</td><td><input type="radio" name="radioRestaurant" id="4"/></td></tr>
-                            <tr><td>Restaurant 5</td><td><input type="radio" name="radioRestaurant" id="5"/></td></tr>
-                            <tr><td>Restaurant 6</td><td><input type="radio" name="radioRestaurant" id="6"/></td></tr>
-                            <tr><td>Restaurant 7</td><td><input type="radio" name="radioRestaurant" id="7"/></td></tr>
-                            <tr><td>Restaurant 8</td><td><input type="radio" name="radioRestaurant" id="8"/></td></tr>
-                            <tr><td>Restaurant 9</td><td><input type="radio" name="radioRestaurant" id="9"/></td></tr>
-                            <tr><td>Restaurant 10</td><td><input type="radio" name="radioRestaurant" id="10"/></td></tr>
+                            <tr><td>Jinbeh</td><td><input type="radio" name="radioRestaurant" value="Jinbeh" id="1"/> </td></tr>
+                            <tr><td>Buffalo Wild Wings</td><td><input type="radio" name="radioRestaurant" value="Buffalo Wild Wings" id="2"/></td></tr>
+                            <tr><td>Wing Stop</td><td><input type="radio" name="radioRestaurant" value="Wing Stop" id="3"/></td></tr>
+                            <tr><td>Fast Furious Japanese Grill</td><td><input type="radio" value="Fast Furious Japanese Grill" name="radioRestaurant" id="4"/></td></tr>
+                            <tr><td>Palio's Pizza Cafe</td><td><input type="radio" name="radioRestaurant" value="Palio's Pizza Cafe" id="5"/></td></tr>
+                            <tr><td>Hanaki</td><td><input type="radio" name="radioRestaurant" value="Hanaki"  id="6"/></td></tr>
+                            <tr><td>Empa Mundo</td><td><input type="radio" name="radioRestaurant" value="Empa Mundo" id="7"/></td></tr>
+                            <tr><td>Bread Zepplin Salads Elavated</td><td><input type="radio" value="Bread Zepplin Salads Elavated" name="radioRestaurant" id="8"/></td></tr>
+                            <tr><td>Chilli Thai</td><td><input type="radio" name="radioRestaurant" value="Chilli Thai" id="9"/></td></tr>
+                            <tr><td>LA Burger</td><td><input type="radio" name="radioRestaurant" value="LA Burger" id="10"/></td></tr>
                             </table>
-                            
+        		                         
+				<input onclick="vote()" type="submit" value="Submit Vote" style="margin: 20%"/>
 				        </div>
 							
 						
